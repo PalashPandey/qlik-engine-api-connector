@@ -10,6 +10,7 @@ class QlikWebSocket():
 	userDirectory, #Found from the QMC, contact your administrator
 	UserId #User id
 	):
+		self.version = "1.0.0"
 		self.senseHost = senseHost
 		self.privateKeyPath = privateKeyPath
 		## userDirectory and userId can be found at QMC -> Users  
@@ -30,20 +31,24 @@ class QlikWebSocket():
 
 
 	def send_json(self, json, # the json that you want to send to Qlik engine. Can be found from the Engine API explorer in dev hub.
-		print=False # Pass True if you want to print thte response to the console
+		print_console=False # Pass True if you want to print thte response to the console
 		):
 		self.ws.send(json)
 		self.response = self.ws.recv()
-		if print == True: 
+		if print_console == True: 
 			print(self.response)
 		return self.response
 
-q = QlikWebSocket("qlikapp01na.tjh.tju.edu", "C:\\Users\\pxp142\\Documents\\QlikEngineAPI\\", "JEFFERSON","pxp142")
-q.send_json("""{
+if __name__ == "__main__":
+	senseHost = input("SenseHost\n")
+	privateKeyPath = input("PrivateKeyPath\n")
+	userDirectory = input("UserDirctory\n")
+	UserId = input("UserId\n")
+	connector = QlikWebSocket(senseHost, privateKeyPath, userDirectory, UserId)
+	connector.send_json("""{
 	"handle": -1,
 	"method": "GetDocList",
 	"params": [],
 	"outKey": -1,
 	"id": 1
-}
-""")
+	}""", print_console=True)

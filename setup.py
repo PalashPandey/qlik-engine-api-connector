@@ -11,24 +11,19 @@ README = (HERE / "README.md").read_text()
 setup(
     name="qlik-engine-api-connector",
     version="1.0.0",
-    description="Read the latest Real Python tutorials",
+    description="Web-socket connector for Qlik engine API. ",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/realpython/reader",
-    author="Real Python",
-    author_email="office@realpython.com",
+    url="https://github.com/PalashPandey/qlik-engine-api-connector/",
+    author="Palash Pandey",
+    author_email="pp535@drexel.edu",
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.6",
     ],
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["feedparser", "html2text"],
-    entry_points={
-        "console_scripts": [
-            "realpython=reader.__main__:main",
-        ]
-    },
+    install_requires=["websocket", "ssl", "requests", "urllib"]
 )
